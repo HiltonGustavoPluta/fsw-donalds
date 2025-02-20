@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
 
-import CartSheet from "../../components/cart-sheet";
 import { CartContext } from "../../contexts/cart";
+import CartSheet from "../../components/cart-sheet";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -115,9 +115,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </ScrollArea>
         </div>
 
-        <Button className="w-full rounded-full" onClick={handleAddToCart}>
-          Adicionar à sacola
-        </Button>
+        <div className="mt-6">
+          <Button className="w-full rounded-full" onClick={handleAddToCart}>
+            Adicionar à sacola
+          </Button>
+        </div>
       </div>
       <CartSheet />
     </>

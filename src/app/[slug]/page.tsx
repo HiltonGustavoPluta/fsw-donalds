@@ -16,12 +16,6 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
   if (!restaurant) {
     return notFound();
   }
-
-  console.log('restaurant', restaurant)
-
-
- // return <>Oi</>
-
   return (
     <div className="flex h-screen flex-col items-center justify-center px-6 pt-24">
       {/* LOGO E TITULO */}
