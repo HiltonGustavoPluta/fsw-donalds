@@ -1,4 +1,4 @@
-import { Consumptionmethod } from '@prisma/client'
+import { ConsumptionMethod } from '@prisma/client'
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ interface ConsumptionMethodOptionProps {
   imageUrl: string;
   imageAlt: string;
   buttonText: string;
-  option: Consumptionmethod;
+  option: ConsumptionMethod;
 }
 
 const ConsumptionMethodOption = ({
