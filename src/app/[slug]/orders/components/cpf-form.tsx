@@ -57,7 +57,7 @@ const CpfForm = ({ consumptionMethod }: { consumptionMethod: ConsumptionMethod }
   };
   return (
     <Drawer open>
-      <DrawerContent>
+      <DrawerContent className="max-w-screen-sm mx-auto">
         <DrawerHeader>
           <DrawerTitle>Visualizar Pedidos</DrawerTitle>
           <DrawerDescription>
