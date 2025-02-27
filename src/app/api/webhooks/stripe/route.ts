@@ -29,7 +29,8 @@ export async function POST(request: Request) {
   )
 
   switch(event.type) {
-    case "checkout.session.completed": {
+    case "checkout.session.completed":
+      case "payment_intent.succeeded" : {
 
       const orderId = event.data.object.metadata?.orderId;
 
