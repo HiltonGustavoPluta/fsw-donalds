@@ -3,7 +3,7 @@
 import { Restaurant } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 
@@ -14,8 +14,12 @@ interface RestaurantHeaderProps {
 const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
   const { slug } = useParams<{ slug: string }>();
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const consumptionMethod = searchParams.get("consumptionMethod");
+
   const handleBackClick = () => router.back();
-  const handleOrdersClick = () => router.push(`/${slug}/orders`);
+  const handleOrdersClick = () => router.push(`/${slug}/orders?consumptionMethod=${consumptionMethod}`);
   return (
     <div className="relative h-[250px] w-full">
       <Button

@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { isValidCpf, removeCpfPunctuation } from "../../menu/helpers/cpf";
+import { ConsumptionMethod } from "@prisma/client";
 
 
 const formSchema = z.object({
@@ -42,14 +43,14 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-const CpfForm = () => {
+const CpfForm = ({ consumptionMethod }: { consumptionMethod: ConsumptionMethod }) => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
   const router = useRouter();
   const pathname = usePathname();
   const onSubmit = (data: FormSchema) => {
-    router.replace(`${pathname}?cpf=${removeCpfPunctuation(data.cpf)}`);
+    router.replace(`${pathname}?cpf=${removeCpfPunctuation(data.cpf)}&consumptionMethod=${consumptionMethod}`);
   };
   const handleCancel = () => {
     router.back();

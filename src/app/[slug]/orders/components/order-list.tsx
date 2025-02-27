@@ -3,12 +3,13 @@
 import { OrderStatus, Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatCurrency } from "@/helpers/format-currency";
 import { Separator } from "@/components/ui/separator";
+import { useMemo } from "react";
 
 interface OrderListProps {
   orders: Array<
@@ -18,6 +19,7 @@ interface OrderListProps {
           select: {
             name: true;
             avatarImageUrl: true;
+            slug: true
           };
         };
         orderProducts: {
@@ -40,8 +42,18 @@ const getStatusLabel = (status: OrderStatus) => {
 };
 
 const OrderList = ({ orders }: OrderListProps) => {
+
   const router = useRouter();
-  const handleBackClick = () => router.back();
+  const { slug } = useParams<{ slug: string }>();
+  
+  const searchParams = useSearchParams();
+  const consumptionMethod = useMemo(() => searchParams.get("consumptionMethod"), [searchParams]);
+  const cpf = useMemo(() => searchParams.get("cpf"), [searchParams]);
+
+  const handleBackClick = () => {
+    router.replace(`/${slug}/menu?cpf=${cpf}&consumptionMethod=${consumptionMethod}`);
+  }
+
   return (
     <div className="space-y-6 p-6">
       <Button
